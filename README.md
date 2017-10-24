@@ -15,9 +15,9 @@ Simpler take on state containers for JavaScript applications.
 ### Example usage
 
 ```
-import { Store } from 'micro-store';
+import { storeFactory } from 'micro-store';
 
-const store = new Store({ counter: 0 });
+const store = storeFactory({ counter: 0 });
 
 store.onUpdate(state => console.log(state));
 
