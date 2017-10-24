@@ -27,8 +27,7 @@ export default class Store {
     }
 
     update(fn) {
-        const newState = Object.assign({}, this.state, fn(this.state));
-        this.state = this.freeze ? Object.freeze(newState) : newState;
+        this.state = this.freeze ? Object.freeze(fn(this.state)) : fn(this.state);
         this.stateChangeCallback(this.state);
     }
 
