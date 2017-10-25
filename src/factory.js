@@ -13,8 +13,8 @@ function storeFactory(initialState = {}) {
     }
 
     function onUpdate(callback) {
-        updateCallback = callback;
-        updateCallback(state);
+        onUpdateCallback = callback;
+        onUpdateCallback(state);
     }
 
     return { update, multiUpdate, onUpdate };

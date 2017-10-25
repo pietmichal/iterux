@@ -9,7 +9,7 @@ test('factory function returns an object', t => {
     t.truthy(store.update);
 });
 
-test('onUpdate function provides current state as a callback argument when called', t => {
+test('onUpdate function calls the callback function with current state as an argument', t => {
     const initialState = { test: 0 };
     const store = storeFactory(initialState);
     store.onUpdate(state => t.deepEqual(state, initialState));
@@ -28,6 +28,14 @@ test('update function overrides the state using returned object from the callbac
     const payload = { other: 100 };   
     store.update(() => payload);
     store.onUpdate(state => t.deepEqual(state, payload));            
+});
+
+test('update function triggers onUpdate callback', t => {
+    t.plan(2);
+    const callback = () => t.pass();
+    const store = storeFactory({ test: 0 });
+    store.onUpdate(callback);
+    store.update(() => ({ test: 1 }));
 });
 
 test('multiUpdate function provides update function as a callback argument', t => {
