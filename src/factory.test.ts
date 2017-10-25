@@ -26,7 +26,7 @@ test('update function provides current state as a callback argument', t => {
 test('update function overrides the state using returned object from the callback', t => {
     const store = storeFactory({ test: 0 }); 
     const payload = { other: 100 };   
-    store.update(() => payload);
+    store.update(() => payload as any);
     store.onUpdate(state => t.deepEqual(state, payload));            
 });
 

@@ -59,4 +59,5 @@ typings/
 
 # lib
 lib/
+.tests/
 

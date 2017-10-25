@@ -2,8 +2,9 @@
   "name": "microstore",
   "version": "0.1.0",
   "description": "Micro state management for JavaScript applications.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "pretest": "tsc --project tsconfig.test.json",
     "test": "ava",
     "build": "tsc --project tsconfig.build.json",
     "prepare": "npm run build"
