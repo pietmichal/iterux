@@ -1,7 +1,7 @@
 {
-  "name": "microstore",
-  "version": "0.1.0",
-  "description": "Micro state management for JavaScript applications.",
+  "name": "micro-state",
+  "version": "0.2.0",
+  "description": "",
   "main": "lib/index.js",
   "scripts": {
     "pretest": "tsc --project tsconfig.test.json",
