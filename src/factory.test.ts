@@ -2,43 +2,38 @@ import test from 'ava';
 import storeFactory from './factory';
 
 test('factory function returns an object', t => {
-    const store = storeFactory({ test: 0 });
+    const store = storeFactory({});
     t.truthy(store);
-    t.truthy(store.multiUpdate);
-    t.truthy(store.onUpdate);
     t.truthy(store.update);
+    t.truthy(store.registerOnStateChangeCallback);    
 });
 
-test('onUpdate function calls the callback function with current state as an argument', t => {
-    const initialState = { test: 0 };
-    const store = storeFactory(initialState);
-    store.onUpdate(state => t.deepEqual(state, initialState));
+test('store is intialised with provided state', async t => {
+    const store = storeFactory({ counter: 0 });
+    const result = await store.update([]);
+    const expected = { counter: 0 };
+    t.deepEqual(result, expected);
+});
+test('update accepts an array', async t => {
+    const store = storeFactory({ counter: 0 });
+    const result = await store.update([ 
+        state => ({ counter: state.counter + 1 }),
+        state => Promise.resolve({ counter: state.counter + 1 })
+    ]);
+    const expected = { counter: 2 };
+    t.deepEqual(result, expected);
 });
 
-test('update function provides current state as a callback argument', t => {
-    const store = storeFactory({ test: 0 });
-    store.update(state => {
-        t.deepEqual(state, { test: 0 });
-        return state;
-    });
+test('registered callback receives up to date state', t => {
+    t.plan(3);
+    const store = storeFactory({ counter: 0 });
+    const callback = state => t.pass();
+    store.registerOnStateChangeCallback(callback);
+    store.update([ () => ({ counter: 1 }) ]);
+    store.update([ () => ({ counter: 1 }) ]);
+    store.update([ () => ({ counter: 2 }) ]);
 });
 
-test('update function overrides the state using returned object from the callback', t => {
-    const store = storeFactory({ test: 0 }); 
-    const payload = { other: 100 };   
-    store.update(() => payload as any);
-    store.onUpdate(state => t.deepEqual(state, payload));            
-});
 
-test('update function triggers onUpdate callback', t => {
-    t.plan(2);
-    const callback = () => t.pass();
-    const store = storeFactory({ test: 0 });
-    store.onUpdate(callback);
-    store.update(() => ({ test: 1 }));
-});
+test.todo('update accepts a generator');
 
-test('multiUpdate function provides update function as a callback argument', t => {
-    const store = storeFactory({ test: 0 });
-    store.multiUpdate(update => t.is(update, store.update));    
-});

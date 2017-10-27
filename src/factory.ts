@@ -1,26 +1,27 @@
 export default function storeFactory<State>(initialState: State) {
 
-    type onUpdateCallback = (state: State) => void;
-    type updateCallback = (state: State) => State;
-    type multiUpdateCallback = (a: any) => void;
+    type onStateChangeCallback = (state: State) => void;
+    type updateArray = Array<(state: State) => State | Promise<State>>
     
     let state: State = initialState;
-    let onUpdateCallback: onUpdateCallback = function() {};
+    let onStateChangeCallback: onStateChangeCallback = function() {};
 
-    function update(callback: updateCallback): void {
-        state = callback(state);
-        onUpdateCallback(state);
+    async function update(array: updateArray): Promise<State> {
+
+        array.forEach(async updateFn => {
+            const result = await Promise.resolve(updateFn(state));
+            state = result;
+            onStateChangeCallback(state);
+        });
+
+        return state;
     }
 
-    function multiUpdate(callback: multiUpdateCallback): void {
-        callback(update);
+    function registerOnStateChangeCallback(callback: onStateChangeCallback): void {
+        onStateChangeCallback = callback;
+        onStateChangeCallback(state);
     }
 
-    function onUpdate(callback: onUpdateCallback): void {
-        onUpdateCallback = callback;
-        onUpdateCallback(state);
-    }
-
-    return { update, multiUpdate, onUpdate };
+    return { update, registerOnStateChangeCallback };
     
 }
