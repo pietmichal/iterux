@@ -1,14 +1,10 @@
-# micro-state
-Simple state abstraction for JavaScript applications.
+# Iterux
+State container, for JavaScript applications, using iterables as a source of updates.
 
-- Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://github.com/concretesolutions/redux-zero).
-- Written in [TypeScript](https://github.com/Microsoft/TypeScript).
-- Has simple and yet powerful API allowing synchronous, asynchronous and *iterable* updates.
+Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://github.com/concretesolutions/redux-zero).
 
 ### todo
 - implement new API
-- react bindings
-- state.update should return new state for testability sake
 
 ### Installation
 
@@ -16,7 +12,7 @@ Simple state abstraction for JavaScript applications.
 
 ### Example usage
 
-```
+```javascript
 import stateFactory from 'micro-state/factory';
 
 const state = stateFactory({ counter: 0 });
@@ -27,9 +23,9 @@ function increment(state) {
     return { counter: state.counter + 1 };
 }
 
+// Nothing stops you from making asynchronous calls.
+// Just return a Promise, make it a generator or use async/await
 function decrement(state) {
-    // Nothing stops you from making asynchronous calls.
-    // Just return a Promise or use async/await
     return Promise.resolve({ counter: state.counter - 1 });
 }
 
