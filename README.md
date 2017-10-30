@@ -22,9 +22,9 @@ Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://g
 ```javascript
 import storeFactory from 'iterux/factory';
 
-const state = storeFactory({ counter: 0 });
+const store = storeFactory({ counter: 0 });
 
-state.registerOnStateChangeCallback(state => console.log(state));
+store.registerOnStateChangeCallback(state => console.log(state));
 
 function increment(state) {
     return { counter: state.counter + 1 };
@@ -38,13 +38,13 @@ function decrement(state) {
     });
 }
 
-state.update([ increment ]);
+store.update([ increment ]);
 // state becomes: { counter: 1 }
 
-state.update([ increment, increment, decrement, decrement, increment ]); 
+store.update([ increment, increment, decrement, decrement, increment ]); 
 // state becomes: { counter: 2 }, { counter: 3 } ..., { counter: 2 }
 
-state.update([ addMessage ]); 
+store.update([ addMessage ]); 
 // state becomes: { message: 'example' } - every value returned overwrites the state!
 
 ```
