@@ -1,5 +1,5 @@
 {
-  "name": "Iterux",
+  "name": "iterux",
   "version": "0.1.0",
   "description": "State container, for JavaScript applications, using arrays as sources of sequential updates.",
   "main": "lib/index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pietmichal/microstore.git"
+    "url": "git+https://github.com/pietmichal/iterux.git"
   },
   "author": "Michal Pietraszko (@pietmichal)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pietmichal/microstore/issues"
+    "url": "https://github.com/pietmichal/iterux/issues"
   },
-  "homepage": "https://github.com/pietmichal/microstore#readme",
+  "homepage": "https://github.com/pietmichal/iterux#readme",
   "devDependencies": {
     "ava": "0.23.0",
     "typescript": "2.5.3"

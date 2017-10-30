@@ -20,7 +20,7 @@ Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://g
 ### Example usage
 
 ```javascript
-import storeFactory from 'iterux/factory';
+import { storeFactory } from 'iterux';
 
 const store = storeFactory({ counter: 0 });
 
@@ -38,13 +38,17 @@ function decrement(state) {
     });
 }
 
+function alterState() {
+    return { altered: 'state' };
+}
+
 store.update([ increment ]);
 // state becomes: { counter: 1 }
 
 store.update([ increment, increment, decrement, decrement, increment ]); 
 // state becomes: { counter: 2 }, { counter: 3 } ..., { counter: 2 }
 
-store.update([ addMessage ]); 
-// state becomes: { message: 'example' } - every value returned overwrites the state!
+store.update([ alterState ]); 
+// state becomes: { altered: 'state' } - every value returned overwrites the state!
 
 ```
