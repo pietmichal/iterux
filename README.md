@@ -1,5 +1,5 @@
 # Iterux
-State container, for JavaScript applications, using iterables as a source of updates.
+State container, for JavaScript applications, using arrays as source of updates.
 
 Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://github.com/concretesolutions/redux-zero).
 
@@ -8,14 +8,14 @@ Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://g
 
 ### Installation
 
-`npm install --save micro-state`
+`npm install --save iterux`
 
 ### Example usage
 
 ```javascript
-import stateFactory from 'micro-state/factory';
+import storeFactory from 'iterux/factory';
 
-const state = stateFactory({ counter: 0 });
+const state = storeFactory({ counter: 0 });
 
 state.registerOnStateChangeCallback(state => console.log(state));
 
@@ -23,31 +23,19 @@ function increment(state) {
     return { counter: state.counter + 1 };
 }
 
-// Nothing stops you from making asynchronous calls.
-// Just return a Promise, make it a generator or use async/await
 function decrement(state) {
-    return Promise.resolve({ counter: state.counter - 1 });
+    return new Promise(resolve => {
+        return { counter: state.counter - 1 };
+    });
 }
 
-function addMessage(state) {
-    return { message: 'example' };
-}
-
-// update method accepts iterables only
 state.update([ increment ]);
 // state becomes: { counter: 1 }
+
 state.update([ increment, increment, decrement, decrement, increment ]); 
 // state becomes: { counter: 2 }, { counter: 3 } ..., { counter: 2 }
-state.update(function* () {
-    yield increment;
-    yield increment;
-    yield decrement;
-    yield increment;
-}());
-// state becomes: { counter: 3 }, { counter: 4 } ..., { counter: 3 }
 
-// Updates override the state!
-state.update(addMessage); 
-// state becomes: { message: 'example' }
+state.update([ addMessage ]); 
+// state becomes: { message: 'example' } - every value returned overwrites the state!
 
 ```
