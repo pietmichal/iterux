@@ -1,10 +1,11 @@
 # Iterux
-State container, for JavaScript applications, using arrays as source of updates.
+State container, for JavaScript applications, using arrays as a source of sequential updates.
 
 Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://github.com/concretesolutions/redux-zero).
 
 ### todo
-- implement new API
+- Implement new API
+- Iterux Cookbook
 
 ### Installation
 
