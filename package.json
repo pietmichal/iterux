@@ -1,7 +1,7 @@
 {
   "name": "Iterux",
   "version": "0.1.0",
-  "description": "",
+  "description": "State container, for JavaScript applications, using arrays as sources of sequential updates.",
   "main": "lib/index.js",
   "scripts": {
     "pretest": "tsc --project tsconfig.test.json",

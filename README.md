@@ -32,7 +32,9 @@ function increment(state) {
 
 function decrement(state) {
     return new Promise(resolve => {
-        return { counter: state.counter - 1 };
+        setTimeout(() => {
+            resolve({ counter: state.counter - 1 });
+        }, 1000);
     });
 }
 
