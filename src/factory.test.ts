@@ -24,14 +24,14 @@ test('update accepts an array', async t => {
     t.deepEqual(result, expected);
 });
 
-test('registered callback receives up to date state', t => {
-    t.plan(3);
+test('registered callback receives up to date state', async t => {
+    t.plan(4);
     const store = storeFactory({ counter: 0 });
     const callback = state => t.pass();
     store.registerOnStateChangeCallback(callback);
-    store.update([ () => ({ counter: 1 }) ]);
-    store.update([ () => ({ counter: 1 }) ]);
-    store.update([ () => ({ counter: 2 }) ]);
+    await store.update([ () => ({ counter: 1 }) ]);
+    await store.update([ () => ({ counter: 1 }) ]);
+    await store.update([ () => ({ counter: 2 }) ]);
 });
 
 

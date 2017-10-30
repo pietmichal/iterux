@@ -40,3 +40,6 @@ state.update([ addMessage ]);
 // state becomes: { message: 'example' } - every value returned overwrites the state!
 
 ```
+
+### Compatability
+Iterux uses *async/await* under the hood.
