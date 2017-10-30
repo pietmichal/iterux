@@ -4,12 +4,18 @@ State container, for JavaScript applications, using arrays as a source of sequen
 Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://github.com/concretesolutions/redux-zero).
 
 ### todo
-- Implement new API
+- Live example
+- React bindings
 - Iterux Cookbook
 
 ### Installation
 
+#### npm
 `npm install --save iterux`
+
+#### yarn
+`yarn add iterux`
+
 
 ### Example usage
 
@@ -40,6 +46,3 @@ state.update([ addMessage ]);
 // state becomes: { message: 'example' } - every value returned overwrites the state!
 
 ```
-
-### Compatability
-Iterux uses *async/await* under the hood.

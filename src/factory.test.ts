@@ -34,6 +34,3 @@ test('registered callback receives up to date state', async t => {
     await store.update([ () => ({ counter: 2 }) ]);
 });
 
-
-test.todo('update accepts a generator');
-

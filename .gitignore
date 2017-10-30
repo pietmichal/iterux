@@ -60,4 +60,5 @@ typings/
 # lib
 lib/
 .tests/
+compiled_tests/
 
