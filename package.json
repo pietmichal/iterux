@@ -1,13 +1,13 @@
 {
   "name": "iterux",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "State container, for JavaScript applications, using arrays as sources of sequential updates.",
   "main": "lib/index.js",
   "scripts": {
     "pretest": "tsc --project tsconfig.test.json",
     "test": "ava",
     "build": "tsc --project tsconfig.build.json",
-    "prepare": "npm run build"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/pietmichal/iterux#readme",
   "devDependencies": {
+    "@types/react": "16.0.20",
+    "@types/react-dom": "16.0.2",
     "ava": "0.23.0",
+    "react": "16.0.0",
+    "react-dom": "16.0.0",
     "typescript": "2.5.3"
   }
 }
