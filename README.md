@@ -3,11 +3,6 @@ State container, for JavaScript applications, using arrays as a source of sequen
 
 Inspired by [Redux](https://github.com/reactjs/redux) and [Redux Zero](https://github.com/concretesolutions/redux-zero).
 
-### todo
-- Live example
-- React bindings
-- Iterux Cookbook
-
 ### Installation
 
 #### npm
